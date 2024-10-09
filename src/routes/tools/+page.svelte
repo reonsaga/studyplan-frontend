@@ -5,7 +5,7 @@
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
     onMount(async() => {
-            const url = "http://127.0.0.1:8000/api/v1/access"
+            const url = "https://studyplan-api.onrender.com/api/v1/access"
             const data = await fetch(url, {
                 method: "GET",
                 credentials: 'include',

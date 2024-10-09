@@ -12,7 +12,7 @@
     const createTask = async(event) => {
         event?.preventDefault()
         if (task_priority && task_details && task_category && task_deadline) {
-            const url = "http://127.0.0.1:8000/api/v1/task"
+            const url = "https://studyplan-api.onrender.com/api/v1/task"
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

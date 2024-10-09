@@ -21,7 +21,7 @@
         modal.classList.toggle('hidden');
     }
     const deleteTask = async() => {
-        const url = `http://127.0.0.1:8000/api/v1/task/${selectedTask.task_uuid.toString()}`
+        const url = `https://studyplan-api.onrender.com/api/v1/task/${selectedTask.task_uuid.toString()}`
         await fetch(url, {
             method: 'DELETE',
             headers: {
@@ -34,7 +34,7 @@
         window.location.reload()
     }
     const updateTask = async() => {
-        const url = `http://127.0.0.1:8000/api/v1/task`
+        const url = `https://studyplan-api.onrender.com/api/v1/task`
         const payload = {
             task_details: task_details,
             task_priority: task_priority,

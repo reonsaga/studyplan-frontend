@@ -6,7 +6,7 @@
     import { goto } from "$app/navigation";
     let tasks;
     const getAccessToken = async() => {
-            const url = "http://127.0.0.1:8000/api/v1/access"
+            const url = "https://studyplan-api.onrender.com/api/v1/access"
             const data = await fetch(url, {
                 method: "GET",
                 credentials: 'include',
@@ -22,7 +22,7 @@
             }
     }
     const getTasks = async() => {
-            const url = "http://127.0.0.1:8000/api/v1/tasks"
+            const url = "https://studyplan-api.onrender.com/api/v1/tasks"
             const data = await fetch(url, {
                 method: "GET",
                 credentials: 'include',
