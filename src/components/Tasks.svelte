@@ -23,7 +23,8 @@
                     "task_details": task_details,
                     "task_priority": task_priority,
                     "task_category": task_category,
-                    "task_deadline": task_deadline
+                    "task_deadline": task_deadline,
+                    "is_done": false
                 }),
             });
             if (response.ok) {
