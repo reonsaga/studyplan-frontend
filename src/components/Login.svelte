@@ -91,7 +91,7 @@
             <!--Image on the side-->
             <div class="relative">
                 <img
-                    src="/images/bg-login.png"
+                    src="images/bg-login.png"
                     alt="img"
                     class="w-[400px] h-full hidden rounded-r-2xl md:block object-cover"
                 />

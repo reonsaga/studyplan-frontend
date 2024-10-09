@@ -1,8 +1,8 @@
 <!--Script for gif play on click-->
 <script>
     let isPlaying = false;
-    const pausedSrc = "/src/lib/images/bag-static.png";
-    const animatedSrc = "/src/lib/images/bag-open.gif";
+    const pausedSrc = "images/bag-static.png";
+    const animatedSrc = "images/bag-open.gif";
 
     function playGif() {
         isPlaying = true;
