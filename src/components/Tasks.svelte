@@ -159,7 +159,7 @@
                                             data-modal-target="authentication-modal"
                                             data-modal-toggle="authentication-modal"
                                             type="button"
-                                            on:click={() => toggleCreate}
+                                            on:click={toggleCreate}
                                             class="text-pink-500 border border-pink-500 bg-white hover:bg-pink-500 hover:text-white hover font-bold rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         >
                                             <svg
@@ -212,7 +212,7 @@
                 </h3>
                 <button
                     type="button"
-                    on:click={() => toggleCreate}
+                    on:click={toggleCreate}
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="authentication-modal"
                 >
