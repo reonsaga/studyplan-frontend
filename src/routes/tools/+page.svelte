@@ -1,0 +1,29 @@
+<script>
+    import SectionWrapper from "../../components/SectionWrapper.svelte";
+    import Sidebar from "../../components/Sidebar.svelte";
+    import Tools from "../../components/Tools.svelte";
+    import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
+    onMount(async() => {
+            const url = "http://127.0.0.1:8000/api/v1/access"
+            const data = await fetch(url, {
+                method: "GET",
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+            })
+            const response = await data.json()
+            if (data.ok) {
+                sessionStorage.setItem("access_token", response.access_token)
+            } else {
+                goto('./')
+            }
+        }
+    )
+</script>
+
+<SectionWrapper>
+    <Sidebar />
+    <Tools />
+</SectionWrapper>

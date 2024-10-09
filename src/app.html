@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+	<!--Fonts: Roboto, Sansita One; Font-Awesome Icon Set-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+		integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<link href="/node_modules/pagedone/src/css/pagedone.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	%sveltekit.head%
+</head>
+
+<body data-sveltekit-preload-data="hover"
+	class="relative bg-white text-slate-800 text-sm sm:text-base flex flex-col min-h-screen">
+	<div class="inset 0 opacity-5 absolute z-[-1] bgGrid"></div>
+	<div style="display: contents">%sveltekit.body%</div>
+	<script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
+	<script src="/node_modules/pagedone/src/js/pagedone.js"></script>
+</body>
+<!-- <script>
+	const gifElement = document.getElementById("gif");
+	const playButton = document.getElementById("playBtn");
+
+	// Paths to the paused and animated versions of your GIF
+	const pausedSrc = "your-paused-image.gif"; // Paused image (static frame)
+	const animatedSrc = "your-animated-gif.gif"; // Full animated GIF
+
+	// Function to play GIF
+	playButton.addEventListener("click", () => {
+		// Set the src to the animated GIF
+		gifElement.src = animatedSrc;
+
+		// Disable button during GIF playback
+		playButton.disabled = true;
+
+		// Reset to paused state after the GIF completes
+		gifElement.addEventListener("load", () => {
+			const duration = getGifDuration(gifElement);
+			setTimeout(() => {
+				gifElement.src = pausedSrc;
+				playButton.disabled = false;
+			}, duration);
+		});
+	});
+
+	// Helper function to estimate GIF duration
+	function getGifDuration(img) {
+		// This value should be the duration of the GIF in milliseconds
+		// If you know the exact time, you can set it manually
+		return 3000; // For example, if the GIF lasts 3 seconds
+	}
+</script> -->
+
+</html>

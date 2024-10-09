@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1,
+h2,
+h3,
+.sansitaone {
+    font-family: 'Sansita', sans-serif;
+}
+
+span {
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+rect.btn {
+    stroke: #fff;
+    fill: #fff;
+    fill-opacity: 0;
+    stroke-opacity: 0;
+}
+
+.bgGrid {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, grey 1px, transparent 1px), linear-gradient(to bottom, grey 1px, transparent 1px);
+}
+
+.blur-nav {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.blur-nav-2 {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.card {
+    width: 320px;
+}
+
+.forum-image {
+    max-width: 100%;
+    /* Allows the image to scale down to fit the container */
+    max-height: 300px;
+    /* Set your desired maximum height */
+    height: auto;
+    /* Maintains aspect ratio */
+    width: auto;
+    /* Maintains aspect ratio */
+}
+
+.pause {
+    animation-play-state: paused;
+}
