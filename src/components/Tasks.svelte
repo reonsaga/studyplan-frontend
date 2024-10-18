@@ -6,46 +6,47 @@
     let task_category;
     let task_deadline;
     function toggleCreate() {
-        const modal = document.getElementById('authentication-modal');
-        modal.classList.toggle('hidden');
+        const modal = document.getElementById("authentication-modal");
+        modal.classList.toggle("hidden");
     }
-    const createTask = async(event) => {
-        event?.preventDefault()
+    const createTask = async (event) => {
+        event?.preventDefault();
         if (task_priority && task_details && task_category && task_deadline) {
-            const url = "https://studyplan-api.onrender.com/api/v1/task"
+            const url = "https://studyplan-api.onrender.com/api/v1/task";
             const response = await fetch(url, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${sessionStorage.getItem('access_token')}`
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${sessionStorage.getItem("access_token")}`,
                 },
                 body: JSON.stringify({
-                    "task_details": task_details,
-                    "task_priority": task_priority,
-                    "task_category": task_category,
-                    "task_deadline": task_deadline,
-                    "is_done": false
+                    task_details: task_details,
+                    task_priority: task_priority,
+                    task_category: task_category,
+                    task_deadline: task_deadline,
+                    is_done: false,
                 }),
             });
             if (response.ok) {
-                task_priority = '';
-                task_details = '';
+                task_priority = "";
+                task_details = "";
                 task_category = null;
-                task_deadline = '';
-                toggleCreate()
+                task_deadline = "";
+                toggleCreate();
                 window.location.reload();
             } else {
-                console.error('Failed to create task');
+                console.error("Failed to create task");
             }
         } else {
-            console.error('Please fill in all required fields');
-            console.log(task_category)
-            console.log(task_deadline)
-            console.log(task_priority)
-            console.log(task_details)
+            console.error("Please fill in all required fields");
+            console.log(task_category);
+            console.log(task_deadline);
+            console.log(task_priority);
+            console.log(task_details);
         }
-    }
+    };
 </script>
+
 <!--Overall Parent Container-->
 <div class="flex-1 flex justify-center items-center xl:ml-64">
     <div class="p-4 w-full">
@@ -186,7 +187,7 @@
                             </form>
                         </div>
                         <!--Tasks Card Container-->
-                        <TaskCard tasks={tasks}/>
+                        <TaskCard {tasks} />
                     </div>
                 </div>
             </div>
@@ -239,8 +240,7 @@
             <!-- Modal body -->
             <div class="p-4 md:p-5">
                 <form class="space-y-4" action="#" on:submit={createTask}>
-                    <div>
-                    </div>
+                    <div></div>
                     <label
                         aria-label="disabled input 2"
                         for="taskdetails"
@@ -271,7 +271,9 @@
                                     type="radio"
                                     value=""
                                     name="list-radio"
-                                    on:click={() => {task_priority = "High"}}
+                                    on:click={() => {
+                                        task_priority = "High";
+                                    }}
                                     class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -290,7 +292,9 @@
                                     type="radio"
                                     value=""
                                     name="list-radio"
-                                    on:click={() => {task_priority = "Normal"}}
+                                    on:click={() => {
+                                        task_priority = "Normal";
+                                    }}
                                     class="w-4 h-4 text-yellow-300 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label
@@ -307,7 +311,9 @@
                                     type="radio"
                                     value=""
                                     name="list-radio"
-                                    on:click={() => {task_priority = "Low"}}
+                                    on:click={() => {
+                                        task_priority = "Low";
+                                    }}
                                     class="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 focus:ring-pink-500 dark:focus:ring-pink-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                                 />
                                 <label

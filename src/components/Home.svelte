@@ -288,6 +288,202 @@
                                 </a>
                             </div>
                         </div>
+                        <!--Column 3: Notifications (hidden on smaller screens, move to /components/Sidebar.svelte for mobile notifications)-->
+                        <div
+                            class="hidden lg:block card pt-1 px-4 pb-4 bg-white border sm:w-5/6 lg:w-80 xl:w-80 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 space-y-4"
+                        >
+                            <div>
+                                <div class="flex items-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="size-10 pe-2"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                                        />
+                                    </svg>
+
+                                    <h1
+                                        class="text-2xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+                                    >
+                                        Events
+                                    </h1>
+                                </div>
+                                <hr class="bg-gray-500" />
+                                <h1
+                                    class="text-lg font-semibold text-gray-900 dark:text-white"
+                                >
+                                    October 1, 2024
+                                </h1>
+
+                                <ol
+                                    class="mt-3 divide-y divider-gray-200 dark:divide-gray-700"
+                                >
+                                    <li>
+                                        <a
+                                            href="#"
+                                            class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <div
+                                                class="text-gray-600 dark:text-gray-400"
+                                            >
+                                                <div
+                                                    class="text-base font-normal"
+                                                >
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >Computerman31</span
+                                                    >
+                                                    commented on
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >BonnieG's</span
+                                                    >
+                                                    post in
+                                                    <span
+                                                        class="font-medium text-pink-500 dark:text-white"
+                                                    >
+                                                        How to start with
+                                                        Flowbite library</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="text-sm font-normal"
+                                                >
+                                                    "Thanks for the tips man"
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <div
+                                                class="text-gray-600 dark:text-gray-400"
+                                            >
+                                                <div
+                                                    class="text-base font-normal"
+                                                >
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >Computerman31</span
+                                                    >
+                                                    commented on
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >BonnieG's</span
+                                                    >
+                                                    post in
+                                                    <span
+                                                        class="font-medium text-pink-500 dark:text-white"
+                                                    >
+                                                        How to start with
+                                                        Flowbite library</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="text-sm font-normal"
+                                                >
+                                                    "Thanks for the tips man"
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div>
+                                <h1
+                                    class="text-lg font-semibold text-gray-900 dark:text-white"
+                                >
+                                    October 2, 2024
+                                </h1>
+                                <ol
+                                    class="mt-3 divide-y divider-gray-200 dark:divide-gray-700"
+                                >
+                                    <li>
+                                        <a
+                                            href="#"
+                                            class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <div
+                                                class="text-gray-600 dark:text-gray-400"
+                                            >
+                                                <div
+                                                    class="text-base font-normal"
+                                                >
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >Computerman31</span
+                                                    >
+                                                    commented on
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >BonnieG's</span
+                                                    >
+                                                    post in
+                                                    <span
+                                                        class="font-medium text-pink-500 dark:text-white"
+                                                    >
+                                                        How to start with
+                                                        Flowbite library</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="text-sm font-normal"
+                                                >
+                                                    "Thanks for the tips man"
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        >
+                                            <div
+                                                class="text-gray-600 dark:text-gray-400"
+                                            >
+                                                <div
+                                                    class="text-base font-normal"
+                                                >
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >Computerman31</span
+                                                    >
+                                                    commented on
+                                                    <span
+                                                        class="font-medium text-gray-900 dark:text-white"
+                                                        >BonnieG's</span
+                                                    >
+                                                    post in
+                                                    <span
+                                                        class="font-medium text-pink-500 dark:text-white"
+                                                    >
+                                                        How to start with
+                                                        Flowbite library</span
+                                                    >
+                                                </div>
+                                                <div
+                                                    class="text-sm font-normal"
+                                                >
+                                                    "Thanks for the tips man"
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

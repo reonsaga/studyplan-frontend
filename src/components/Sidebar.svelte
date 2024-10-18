@@ -1,36 +1,39 @@
 <script>
-
     import { goto } from "$app/navigation";
     function toggleSidebar() {
-        const sidebar = document.getElementById('sidebar-multi-level-sidebar');
-        sidebar.classList.toggle('-translate-x-full');
+        const sidebar = document.getElementById("sidebar-multi-level-sidebar");
+        sidebar.classList.toggle("-translate-x-full");
 
         // Add or remove the event listener for outside click when the sidebar is open
-        if (!sidebar.classList.contains('-translate-x-full')) {
-            document.addEventListener('click', handleClickOutsideSidebar);
+        if (!sidebar.classList.contains("-translate-x-full")) {
+            document.addEventListener("click", handleClickOutsideSidebar);
         } else {
-            document.removeEventListener('click', handleClickOutsideSidebar);
+            document.removeEventListener("click", handleClickOutsideSidebar);
         }
     }
     function toggleDropdown() {
-        const dropdown = document.getElementById('dropdown-example');
-        dropdown.classList.toggle('hidden');
+        const dropdown = document.getElementById("dropdown-example");
+        dropdown.classList.toggle("hidden");
     }
     function handleClickOutsideSidebar(event) {
-        const sidebar = document.getElementById('sidebar-multi-level-sidebar');
-        const toggleButton = document.querySelector('.p-2.mt-2.ms-3'); // Your toggle button
+        const sidebar = document.getElementById("sidebar-multi-level-sidebar");
+        const toggleButton = document.querySelector(".p-2.mt-2.ms-3"); // Your toggle button
 
         // Check if the click is outside the sidebar and not on the toggle button
-        if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
-            sidebar.classList.add('-translate-x-full');
-            document.removeEventListener('click', handleClickOutsideSidebar);
+        if (
+            !sidebar.contains(event.target) &&
+            !toggleButton.contains(event.target)
+        ) {
+            sidebar.classList.add("-translate-x-full");
+            document.removeEventListener("click", handleClickOutsideSidebar);
         }
     }
     function logout() {
-        sessionStorage.removeItem("access_token")
-        goto('./')
+        sessionStorage.removeItem("access_token");
+        goto("./");
     }
 </script>
+
 <!--Mobile Mode Buttons-->
 <div class="items-center flex flex-row">
     <button
@@ -54,6 +57,29 @@
             />
         </svg>
     </button>
+
+    <button
+        id="dropdownNotificationButton"
+        data-dropdown-toggle="dropdownNotification"
+        class="block lg:hidden flex items-end p-2 mt-2 me-3 text-sm text-gray-500 rounded-lg xl:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 ml-auto"
+        type="button"
+    >
+        <span class="sr-only">Notifications</span>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+            />
+        </svg>
+    </button>
 </div>
 
 <!--Sidebar Start-->
@@ -72,11 +98,11 @@
                 </h1>
             </li>
 
-            <!-- <li>
-                Home Button
+            <!--Home Button-->
+            <li>
                 <button
                     type="button"
-                    on:click={() => goto('/home')}
+                    on:click={() => goto("/home")}
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                     <svg
@@ -96,12 +122,12 @@
 
                     <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
                 </button>
-            </li> -->
+            </li>
             <!--Tasks Button-->
             <li>
                 <button
                     type="button"
-                    on:click={() => goto('./tasks')}
+                    on:click={() => goto("./tasks")}
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                     <svg
@@ -129,7 +155,7 @@
             <li>
                 <button
                     type="button"
-                    on:click={() => goto('./tools')}
+                    on:click={() => goto("./tools")}
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                     <svg
@@ -145,7 +171,7 @@
                     </svg>
 
                     <span class="flex-1 ms-3 whitespace-nowrap"
-                        >Pomodoro Timer</span
+                        >Study Tools</span
                     >
                 </button>
             </li>
@@ -153,7 +179,7 @@
             <li>
                 <button
                     type="button"
-                    on:click={() => goto('./engage')}
+                    on:click={() => goto("./engage")}
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                     <svg
@@ -214,6 +240,51 @@
                 </button>
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
+                        <a
+                            href="#"
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        >
+                            <svg
+                                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M18.75 12.75h1.5a.75.75 0 0 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM12 6a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 6ZM12 18a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 12 18ZM3.75 6.75h1.5a.75.75 0 1 0 0-1.5h-1.5a.75.75 0 0 0 0 1.5ZM5.25 18.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 0 1.5ZM3 12a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 3 12ZM9 3.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM12.75 12a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0ZM9 15.75a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z"
+                                />
+                            </svg>
+
+                            <span class="flex-1 ms-3 whitespace-nowrap"
+                                >General</span
+                            ></a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+
+                            <span class="flex-1 ms-3 whitespace-nowrap"
+                                >Profile</span
+                            ></a
+                        >
+                    </li>
+                    <li>
                         <button
                             type="button"
                             on:click={() => logout()}
@@ -221,7 +292,7 @@
                         >
                             <svg
                                 viewBox="0 0 24 24"
-                                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                                class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -235,10 +306,174 @@
 
                             <span class="flex-1 ms-3 whitespace-nowrap"
                                 >Logout</span
-                            ></button>
+                            ></button
+                        >
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
 </aside>
+
+<!--Mobile Mode Notifications-->
+<div
+    id="dropdownNotification"
+    aria-labelledby="dropdownNotificationButton"
+    class="z-50 hidden card pt-1 px-4 pb-4 bg-white border sm:w-5/6 lg:w-80 xl:w-80 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 space-y-4"
+>
+    <div>
+        <div class="flex items-center">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-10 pe-2"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                />
+            </svg>
+
+            <h1
+                class="text-2xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+            >
+                Events
+            </h1>
+        </div>
+        <hr class="bg-gray-500" />
+        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">
+            October 1, 2024
+        </h1>
+
+        <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
+            <li>
+                <a
+                    href="#"
+                    class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <div class="text-base font-normal">
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >Computerman31</span
+                            >
+                            commented on
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >BonnieG's</span
+                            >
+                            post in
+                            <span
+                                class="font-medium text-pink-500 dark:text-white"
+                            >
+                                How to start with Flowbite library</span
+                            >
+                        </div>
+                        <div class="text-sm font-normal">
+                            "Thanks for the tips man"
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a
+                    href="#"
+                    class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <div class="text-base font-normal">
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >Computerman31</span
+                            >
+                            commented on
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >BonnieG's</span
+                            >
+                            post in
+                            <span
+                                class="font-medium text-pink-500 dark:text-white"
+                            >
+                                How to start with Flowbite library</span
+                            >
+                        </div>
+                        <div class="text-sm font-normal">
+                            "Thanks for the tips man"
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ol>
+    </div>
+    <hr class="bg-gray-500" />
+    <div>
+        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">
+            October 2, 2024
+        </h1>
+        <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
+            <li>
+                <a
+                    href="#"
+                    class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <div class="text-base font-normal">
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >Computerman31</span
+                            >
+                            commented on
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >BonnieG's</span
+                            >
+                            post in
+                            <span
+                                class="font-medium text-pink-500 dark:text-white"
+                            >
+                                How to start with Flowbite library</span
+                            >
+                        </div>
+                        <div class="text-sm font-normal">
+                            "Thanks for the tips man"
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a
+                    href="#"
+                    class="items-center block p-3 sm:flex hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
+                    <div class="text-gray-600 dark:text-gray-400">
+                        <div class="text-base font-normal">
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >Computerman31</span
+                            >
+                            commented on
+                            <span
+                                class="font-medium text-gray-900 dark:text-white"
+                                >BonnieG's</span
+                            >
+                            post in
+                            <span
+                                class="font-medium text-pink-500 dark:text-white"
+                            >
+                                How to start with Flowbite library</span
+                            >
+                        </div>
+                        <div class="text-sm font-normal">
+                            "Thanks for the tips man"
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ol>
+    </div>
+</div>
