@@ -140,7 +140,7 @@
 
                         <!--Posts Container-->
                         <div
-                            class="pt-4 px-4 pb-4 mb-4 bg-white border xl:w-4/6 lg:w-5/6 md:w-5/6 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 space-y-4"
+                            class="pt-4 px-4 pb-4 mb-4 bg-white border xl:w-4/6 lg:w-5/6 md:w-5/6 border-gray-200 rounded-lg shadow space-y-4"
                         >
                             <div class="flex items-center">
                                 <svg
