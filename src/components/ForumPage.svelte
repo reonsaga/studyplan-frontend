@@ -171,7 +171,7 @@
                             <div class="flex flex-col items-center">
                                 <img
                                     class="forum-image mx-4 mb-4 rounded-lg"
-                                    src="/src/lib/images/sample-forum.jpg"
+                                    src="/static/images/sample-forum.jpg"
                                     alt="image description"
                                 />
 

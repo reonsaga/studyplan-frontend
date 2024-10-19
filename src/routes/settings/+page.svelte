@@ -1,9 +1,9 @@
 <script>
     import SectionWrapper from "../../components/SectionWrapper.svelte";
     import Sidebar from "../../components/Sidebar.svelte";
-    import Tools from "../../components/Tools.svelte";
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
+    import Settings from "../../components/Settings.svelte";
     /*onMount(async () => {
         const url = "https://studyplan-api.onrender.com/api/v1/access";
         const data = await fetch(url, {
@@ -24,5 +24,5 @@
 
 <SectionWrapper>
     <Sidebar />
-    <Tools />
+    <Settings />
 </SectionWrapper>

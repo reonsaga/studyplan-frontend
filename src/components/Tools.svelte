@@ -1,5 +1,6 @@
 <script lang="ts">
     import { fade, slide } from "svelte/transition";
+    import { Tooltip, Button } from "flowbite-svelte";
     // Variables for Pomodoro Timer
     let timer: ReturnType<typeof setInterval> | null = null; // Timer variable with proper type
     let totalWorkTime = 25; // Total work time in minutes
@@ -277,7 +278,7 @@
                                     class={`inline-block p-4 border-b-2 rounded-t-lg ${activeTab === "leitner" ? "text-pink-500 border-pink-500" : "text-gray-500 border-transparent"}`}
                                     on:click={() => (activeTab = "leitner")}
                                 >
-                                    Leitner Box
+                                    Leitner System
                                 </button>
                             </li>
                             <li class="me-2" role="presentation">
@@ -298,11 +299,51 @@
                         {#if activeTab === "pomodoro"}
                             <div class="p-4 rounded-lg">
                                 <div
-                                    class={` px-6 py-4 pb-4 bg-white border border-gray-300 rounded-lg  space-y-4 ${isBreak ? "bg-pink-200" : ""}`}
+                                    class={` pt-1 px-4 pb-4 w-[380px] md:w-[400px] lg:w-[600px] xl:w-[700px] mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4 ${isBreak ? "bg-pink-200" : ""}`}
                                 >
-                                    <h1 class="text-3xl font-bold mb-4">
-                                        Pomodoro Timer
-                                    </h1>
+                                    <div
+                                        class="flex justify-between items-center mb-4"
+                                    >
+                                        <h1 class="text-3xl font-bold">
+                                            Pomodoro Timer
+                                        </h1>
+                                        <Button
+                                            class="bg-transparent text-gray-700 hover:bg-transparent focus:ring-0 focus:ring-white "
+                                            id="click"
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="size-6"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                                                />
+                                            </svg>
+                                        </Button>
+                                        <Tooltip
+                                            class="mx-2` mr-4 w-full sm:w-40 md:w-80 lg:w-96"
+                                            type="dark"
+                                            trigger="click"
+                                            triggeredBy="#click"
+                                            placement="bottom"
+                                            >How to use the Pomodoro Technique: <br
+                                            />
+                                            <hr class="my-2" />
+                                            1. Choose a task to focus on.<br />
+                                            2. Set a timer for the length of your
+                                            work session.<br />
+                                            3. Set a timer for when you should take
+                                            a break.<br />
+                                            4. Start the timer and repeat the work-break-work
+                                            session until satisfied.
+                                        </Tooltip>
+                                    </div>
+
                                     <hr class="bg-gray-500" />
                                     <!-- Pomodoro Timer content -->
                                     <label
@@ -404,11 +445,63 @@
                         <!-- Leitner Box Tab -->
                         {#if activeTab === "leitner"}
                             <div
-                                class="p-4 rounded-lg border border-gray-300 rounded-lg"
+                                class="pt-1 px-4 pb-4 w-[380px] md:w-[400px] lg:w-[600px] xl:w-[700px] mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
                             >
-                                <h1 class="text-3xl font-bold mb-4">
-                                    Leitner Box
-                                </h1>
+                                <div
+                                    class="flex justify-between items-center mb-4"
+                                >
+                                    <h1 class="text-3xl font-bold">
+                                        Leitner System
+                                    </h1>
+                                    <Button
+                                        class="bg-transparent text-gray-700 hover:bg-transparent focus:ring-0 focus:ring-white "
+                                        id="click"
+                                        ><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                            class="size-6"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                                            />
+                                        </svg>
+                                    </Button>
+                                    <Tooltip
+                                        class="mx-2 mr-4 w-full sm:w-40 md:w-80 lg:w-96"
+                                        type="dark"
+                                        trigger="click"
+                                        triggeredBy="#click"
+                                        placement="bottom"
+                                    >
+                                        How to start the Leitner System: <br />
+                                        <hr class="my-2" />
+                                        1. Choose a topic to study about.<br />
+                                        2. Create flashcards with a question and
+                                        answer for your topic.<br />
+                                        3. Put all of the flashcards in the first
+                                        box.<br />
+                                        There are 3 boxes:<br />
+                                        Box 1: Flashcards that you will answer everyday<br
+                                        />
+                                        Box 2: Flashcards that you will answer less
+                                        often (i.e. every 3 days)<br />
+                                        Box 3: Flashcards that you will answer the
+                                        least (i.e. once a week) <br />
+                                        4. Start the first quiz. <br />
+                                        5. Answer the flashcards truthfully.<br
+                                        />
+                                        6. If you answered a flashcard correctly,
+                                        move it to the next box. <br />
+                                        7. Once you have placed all the cards in
+                                        the third box, answer until you fully get
+                                        everything correct.
+                                    </Tooltip>
+                                </div>
                                 <div>
                                     {#if selectedBoxIndex === null}
                                         <div
@@ -604,15 +697,61 @@
                         <!-- Active Recall Tab -->
                         {#if activeTab === "activeRecall"}
                             <div class="p-4 rounded-lg">
-                                <div class="quiz-creator">
+                                <div
+                                    class="pt-1 px-4 pb-4 w-[380px] md:w-[400px] lg:w-[600px] xl:w-[700px] mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                                >
                                     <!-- Add Questions Section -->
                                     {#if !showQuiz}
                                         <div
                                             transition:slide={{ duration: 200 }}
                                         >
-                                            <h1 class="text-3xl font-bold mb-4">
-                                                Active Recall Mini-Quiz
-                                            </h1>
+                                            <div
+                                                class="flex justify-between items-center mb-4"
+                                            >
+                                                <h1 class="text-3xl font-bold">
+                                                    Active Recall
+                                                </h1>
+                                                <Button
+                                                    class="bg-transparent text-gray-700 hover:bg-transparent focus:ring-0 focus:ring-white "
+                                                    id="click"
+                                                    ><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke-width="1.5"
+                                                        stroke="currentColor"
+                                                        class="size-6"
+                                                    >
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                                                        />
+                                                    </svg>
+                                                </Button>
+                                                <Tooltip
+                                                    class="mx-2 mr-4 w-full sm:w-40 md:w-80 lg:w-96"
+                                                    type="dark"
+                                                    trigger="click"
+                                                    triggeredBy="#click"
+                                                    placement="bottom"
+                                                >
+                                                    How to use the Active Recall
+                                                    Technique: <br />
+                                                    <hr class="my-2" />
+                                                    1. Choose a topic to study about.<br
+                                                    />
+                                                    2. Create a mini-quiz with a
+                                                    question and answer for your
+                                                    topic.<br />
+                                                    3. Study your topic and answer
+                                                    the quiz while studying truthfully.<br
+                                                    />
+                                                    4. Repeat until you feel that
+                                                    your study session is sufficient.
+                                                </Tooltip>
+                                            </div>
+
                                             <input
                                                 type="text"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"

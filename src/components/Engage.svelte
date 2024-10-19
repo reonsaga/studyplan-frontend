@@ -1,8 +1,9 @@
 <!--Script for gif play on click-->
 <script>
+    import { Tooltip, Button } from "flowbite-svelte";
     let isPlaying = false;
-    const pausedSrc = "images/bag-static.png";
-    const animatedSrc = "images/bag-open.gif";
+    const pausedSrc = "/src/lib/images/bag-static.png";
+    const animatedSrc = "/src/lib/images/bag-open.gif";
 
     function playGif() {
         isPlaying = true;
@@ -16,11 +17,11 @@
             <div class="flex items-center justify-center rounded">
                 <div class="relative min-h-screen z-10">
                     <div
-                        class="top-4 left-3 flex flex-col items-center lg:items-start lg:flex-row lg:space-x-4 space-y-4 lg:space-y-0"
+                        class="top-4 left-3 flex flex-col items-center md:flex-row space-x-4 space-y-4"
                     >
                         <!--Column 1-->
                         <div
-                            class="card pt-1 px-4 pb-4 bg-white border w-5/6 border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 space-y-4"
+                            class="card mt-4 pt-1 px-4 pb-4 bg-white border w-[400px] sm:w-[400px] md:w-[325px] lg:w-[400px] border-gray-200 rounded-lg shadow space-y-4 md:self-start lg:ml-0"
                         >
                             <div class="flex items-center">
                                 <svg
@@ -37,20 +38,118 @@
                                 </svg>
 
                                 <h1
-                                    class="text-2xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+                                    class="text-2xl font-bold text-gray-900 text-start mt-2 mb-2"
                                 >
-                                    Sprite Pool
+                                    Pull Avatars
                                 </h1>
+                                <div class="flex-grow"></div>
+                                <Button
+                                    class="bg-transparent text-gray-700 hover:bg-transparent focus:ring-0 focus:ring-white "
+                                    id="click"
+                                    ><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="currentColor"
+                                        class="size-6"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
+                                        />
+                                    </svg>
+                                </Button>
+                                <Tooltip
+                                    class="mx-2"
+                                    type="dark"
+                                    trigger="click"
+                                    triggeredBy="#click"
+                                    placement="bottom"
+                                    >Welcome to the Avatar System! <br /> Here
+                                    you can use your acquired points to get
+                                    different avatars that serve as your profile
+                                    image! <br /> You can spend a minimum of 20
+                                    points for a single pull and 200 points for
+                                    10 pulls at once.
+                                    <hr class="my-2" />
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Prize</span>
+                                        <span>Chance</span>
+                                    </div>
+                                    <hr class="my-2" />
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Common</span>
+                                        <span>70%</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Rare</span>
+                                        <span>28%</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Epic</span>
+                                        <span>2%</span>
+                                    </div>
+                                    <hr class="my-2" />
+                                    Note: If you get a duplicate avatar, you will
+                                    be compensated with points according to the rarity
+                                    of<br />the duplicate.
+                                    <hr class="my-2" />
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Duplicate</span>
+                                        <span>Points</span>
+                                    </div>
+                                    <hr class="my-2" />
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Common</span>
+                                        <span>5</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Rare</span>
+                                        <span>20</span>
+                                    </div>
+                                    <div
+                                        style="display: flex; justify-content: space-between; width: 100%;"
+                                    >
+                                        <span>Epic</span>
+                                        <span>100</span>
+                                    </div>
+                                </Tooltip>
                             </div>
 
                             <hr class="bg-gray-500" />
 
                             <div class="flex flex-col items-center">
+                                <img
+                                    class="mx-4 mb-4 rounded-lg w-96 h-48"
+                                    src="/src/lib/images/sample-forum.jpg"
+                                />
+
                                 <div class="flex flex-row items-center">
                                     <h1
-                                        class="text-xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+                                        class="text-xl font-bold text-gray-900 text-start mt-2 mb-2"
                                     >
-                                        You have: 200
+                                        You have:
+                                    </h1>
+                                    <h1
+                                        class="ms-2 text-xl font-bold text-pink-500 text-start mt-2 mb-2"
+                                    >
+                                        200
                                     </h1>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -143,6 +242,197 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!--Column 2-->
+                        <div
+                            class="pt-1 px-4 pb-4 w-[400px] md:w-[410px] lg:w-[600px] xl:w-[700px] mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                        >
+                            <div class="flex items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    class="size-10 pe-2"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM6.262 6.072a8.25 8.25 0 1 0 10.562-.766 4.5 4.5 0 0 1-1.318 1.357L14.25 7.5l.165.33a.809.809 0 0 1-1.086 1.085l-.604-.302a1.125 1.125 0 0 0-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 0 1-2.288 4.04l-.723.724a1.125 1.125 0 0 1-1.298.21l-.153-.076a1.125 1.125 0 0 1-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 0 1-.21-1.298L9.75 12l-1.64-1.64a6 6 0 0 1-1.676-3.257l-.172-1.03Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+
+                                <h1
+                                    class="text-2xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+                                >
+                                    Leaderboards
+                                </h1>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div class="flex items-center">
+                                <p
+                                    class="ms-2 text-sm font-bold text-yellow-300"
+                                >
+                                    1.
+                                </p>
+                                <p
+                                    class="ms-2 text-sm font-bold text-yellow-300"
+                                >
+                                    First Placeman
+                                </p>
+                                <div class="flex-grow"></div>
+                                <p class="text-sm font-bold text-pink-500">
+                                    2000 points
+                                </p>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div class="flex items-center">
+                                <p class="ms-2 text-sm font-bold text-gray-400">
+                                    2.
+                                </p>
+                                <p class="ms-2 text-sm font-bold text-gray-400">
+                                    Second Placeman
+                                </p>
+                                <div class="flex-grow"></div>
+                                <p class="text-sm font-bold text-pink-500">
+                                    1000 points
+                                </p>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div class="flex items-center">
+                                <p
+                                    class="ms-2 text-sm font-bold text-yellow-600"
+                                >
+                                    3.
+                                </p>
+                                <p
+                                    class="ms-2 text-sm font-bold text-yellow-600"
+                                >
+                                    Third Placeman
+                                </p>
+                                <div class="flex-grow"></div>
+                                <p class="text-sm font-bold text-pink-500">
+                                    500 points
+                                </p>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div class="flex items-center">
+                                <p class="ms-2 text-sm font-bold text-gray-700">
+                                    4.
+                                </p>
+                                <p class="ms-2 text-sm font-bold text-gray-700">
+                                    Fourth Placeman
+                                </p>
+                                <div class="flex-grow"></div>
+                                <p class="text-sm font-bold text-pink-500">
+                                    125 points
+                                </p>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div class="flex items-center">
+                                <p class="ms-2 text-sm font-bold text-gray-700">
+                                    5.
+                                </p>
+                                <p class="ms-2 text-sm font-bold text-gray-700">
+                                    Fifth Placeman
+                                </p>
+                                <div class="flex-grow"></div>
+                                <p class="text-sm font-bold text-pink-500">
+                                    50 points
+                                </p>
+                            </div>
+                            <hr class="bg-gray-500" />
+
+                            <div class="flex items-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    class="size-10 pe-2"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM6.262 6.072a8.25 8.25 0 1 0 10.562-.766 4.5 4.5 0 0 1-1.318 1.357L14.25 7.5l.165.33a.809.809 0 0 1-1.086 1.085l-.604-.302a1.125 1.125 0 0 0-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 0 1-2.288 4.04l-.723.724a1.125 1.125 0 0 1-1.298.21l-.153-.076a1.125 1.125 0 0 1-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 0 1-.21-1.298L9.75 12l-1.64-1.64a6 6 0 0 1-1.676-3.257l-.172-1.03Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+
+                                <h1
+                                    class="text-2xl font-bold text-gray-900 dark:text-white text-start mt-2 mb-2"
+                                >
+                                    Monthly Activity
+                                </h1>
+                            </div>
+                            <hr class="bg-gray-500" />
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch"
+                            >
+                                <div
+                                    class="flex flex-col pt-1 px-4 pb-4 w-full mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                                >
+                                    <h1
+                                        class="font-bold text-gray-400 text-start mt-2 mb-2"
+                                    >
+                                        LEADERBOARD PLACEMENT
+                                    </h1>
+                                    <hr class="bg-gray-500" />
+                                    <h1
+                                        class="text-2xl font-bold text-pink-500 text-start mt-2 mb-2"
+                                    >
+                                        1245th
+                                    </h1>
+                                </div>
+
+                                <div
+                                    class="flex flex-col pt-1 px-4 pb-4 w-full mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                                >
+                                    <h1
+                                        class="font-bold text-gray-400 text-start mt-2 mb-2"
+                                    >
+                                        TASKS COMPLETED
+                                    </h1>
+                                    <hr class="bg-gray-500" />
+                                    <h1
+                                        class="text-2xl font-bold text-pink-500 text-start mt-2 mb-2"
+                                    >
+                                        7
+                                    </h1>
+                                </div>
+
+                                <div
+                                    class="flex flex-col pt-1 px-4 pb-4 w-full mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                                >
+                                    <h1
+                                        class="font-bold text-gray-400 text-start mt-2 mb-2"
+                                    >
+                                        STUDY SESSIONS COMPLETED
+                                    </h1>
+                                    <hr class="bg-gray-500" />
+                                    <h1
+                                        class="text-2xl font-bold text-pink-500 text-start mt-2 mb-2"
+                                    >
+                                        3
+                                    </h1>
+                                </div>
+
+                                <div
+                                    class="flex flex-col pt-1 px-4 pb-4 w-full mx-auto bg-white border border-gray-200 rounded-lg shadow space-y-4"
+                                >
+                                    <h1
+                                        class="font-bold text-gray-400 text-start mt-2 mb-2"
+                                    >
+                                        POINTS ACCUMULATED
+                                    </h1>
+
+                                    <hr class="bg-gray-500" />
+                                    <h1
+                                        class="text-2xl font-bold text-pink-500 text-start mt-2 mb-2"
+                                    >
+                                        0
+                                    </h1>
+                                </div>
+                            </div>
+
                             <hr class="bg-gray-500" />
                         </div>
                     </div>
