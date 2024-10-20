@@ -1,6 +1,39 @@
-<!--Import Svelte Thingies only for Timeline-->
 <script>
-    import { Timeline, TimelineItem, Button } from "flowbite-svelte";
+    import { slide } from "svelte/transition";
+    let showUsernameError = false;
+    let showUsernameSuccess = false;
+    let usernameErrorMessage = "";
+    let oldUsername = "";
+    let showPasswordError = false;
+    let showPasswordSuccess = false;
+    let passwordErrorMessage = "";
+    let newUsername = "";
+    let oldPassword = "";
+    let newPassword = "";
+
+    // Username save logic
+    function onSaveUsername() {
+        if (!newUsername) {
+            showUsernameError = true;
+            showUsernameSuccess = false;
+            usernameErrorMessage = "Please fill in the new username field.";
+        } else {
+            showUsernameError = false;
+            showUsernameSuccess = true;
+        }
+    }
+
+    // Password save logic
+    function onSavePassword() {
+        if (!oldPassword || !newPassword) {
+            showPasswordError = true;
+            showPasswordSuccess = false;
+            passwordErrorMessage = "Both password fields must be filled.";
+        } else {
+            showPasswordError = false;
+            showPasswordSuccess = true;
+        }
+    }
 </script>
 
 <!--Overall Parent Containers-->
@@ -96,15 +129,18 @@
                                 />
                             </div>
                             <hr class="bg-gray-500" />
+                            <!-- Username Section -->
                             <div class="grid grid-cols-2 space-x-2">
                                 <div class="flex flex-col items-start">
                                     <label
                                         for="ouser"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                        >Username</label
+                                        >Old Username</label
                                     >
                                     <input
                                         type="text"
+                                        id="ouser"
+                                        bind:value={oldUsername}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5"
                                         placeholder="Old username"
                                         readonly
@@ -118,6 +154,8 @@
                                     >
                                     <input
                                         type="text"
+                                        id="nuser"
+                                        bind:value={newUsername}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5"
                                         placeholder="New Username"
                                     />
@@ -127,13 +165,81 @@
                                 >
                                     <button
                                         class="quiz-button w-[200px] ms-0"
+                                        on:click={onSaveUsername}
                                         type="button"
                                     >
                                         Save Changes
                                     </button>
                                 </div>
+
+                                <!-- Username Error/Success Message (Centered and in a grid) -->
+                                <div
+                                    class="grid grid-cols-1 justify-items-center col-span-2"
+                                >
+                                    {#if showUsernameError}
+                                        <div
+                                            id="alert-username"
+                                            class="flex items-center p-4 mb-4 text-red-800 bg-red-50 rounded-lg w-full"
+                                            role="alert"
+                                            transition:slide={{ duration: 200 }}
+                                        >
+                                            <svg
+                                                class="w-5 h-5 mr-2"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                ><path
+                                                    d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2z"
+                                                /></svg
+                                            >
+                                            <span class="text-md"
+                                                >{usernameErrorMessage}</span
+                                            >
+                                            <button
+                                                type="button"
+                                                class="ml-auto"
+                                                on:click={() =>
+                                                    (showUsernameError = false)}
+                                                >✖</button
+                                            >
+                                        </div>
+                                    {/if}
+                                    {#if showUsernameSuccess}
+                                        <div
+                                            id="alert-username-success"
+                                            class="flex items-center p-4 mb-4 text-green-800 bg-green-50 rounded-lg w-full"
+                                            role="alert"
+                                            transition:slide={{ duration: 200 }}
+                                        >
+                                            <svg
+                                                class="w-5 h-5 mr-2"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                ><path
+                                                    d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2z"
+                                                /></svg
+                                            >
+                                            <span
+                                                >Username change successful.
+                                                Please check your email for
+                                                verification.</span
+                                            >
+                                            <button
+                                                type="button"
+                                                class="ml-auto"
+                                                on:click={() =>
+                                                    (showUsernameSuccess = false)}
+                                                >✖</button
+                                            >
+                                        </div>
+                                    {/if}
+                                </div>
                             </div>
+
                             <hr class="bg-gray-500" />
+
+                            <!-- Password Section -->
                             <div class="grid grid-cols-2 space-x-2">
                                 <div class="flex flex-col items-start">
                                     <label
@@ -143,18 +249,22 @@
                                     >
                                     <input
                                         type="password"
+                                        id="opass"
+                                        bind:value={oldPassword}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5"
                                         placeholder="Enter your password"
                                     />
                                 </div>
                                 <div class="flex flex-col items-start">
                                     <label
-                                        for="password"
+                                        for="npass"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                         >Change Password</label
                                     >
                                     <input
                                         type="password"
+                                        id="npass"
+                                        bind:value={newPassword}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5"
                                         placeholder="Enter your new password"
                                     />
@@ -164,12 +274,75 @@
                                 >
                                     <button
                                         class="quiz-button w-[200px] ms-0"
+                                        on:click={onSavePassword}
                                         type="button"
                                     >
                                         Save Changes
                                     </button>
                                 </div>
+
+                                <!-- Password Error/Success Message -->
+                                <div
+                                    class="grid grid-cols-1 justify-items-center col-span-2"
+                                >
+                                    {#if showPasswordError}
+                                        <div
+                                            id="alert-password"
+                                            class="flex items-center p-4 mb-4 text-red-800 bg-red-50 rounded-lg w-full"
+                                            role="alert"
+                                            transition:slide={{ duration: 200 }}
+                                        >
+                                            <svg
+                                                class="w-5 h-5 mr-2"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                ><path
+                                                    d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2z"
+                                                /></svg
+                                            >
+                                            <span>{passwordErrorMessage}</span>
+                                            <button
+                                                type="button"
+                                                class="ml-auto"
+                                                on:click={() =>
+                                                    (showPasswordError = false)}
+                                                >✖</button
+                                            >
+                                        </div>
+                                    {/if}
+                                    {#if showPasswordSuccess}
+                                        <div
+                                            id="alert-password-success"
+                                            class="flex items-center p-4 mb-4 text-green-800 bg-green-50 rounded-lg w-full"
+                                            role="alert"
+                                            transition:slide={{ duration: 200 }}
+                                        >
+                                            <svg
+                                                class="w-5 h-5 mr-2"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                                ><path
+                                                    d="M10 0a10 10 0 1 0 10 10A10 10 0 0 0 10 0zm1 15H9v-2h2v2zm0-4H9V5h2z"
+                                                /></svg
+                                            >
+                                            <span
+                                                >Input successful. Please check
+                                                your email for verification.</span
+                                            >
+                                            <button
+                                                type="button"
+                                                class="ml-auto"
+                                                on:click={() =>
+                                                    (showPasswordSuccess = false)}
+                                                >✖</button
+                                            >
+                                        </div>
+                                    {/if}
+                                </div>
                             </div>
+
                             <hr class="bg-gray-500" />
                             <div class="grid grid-cols-2 gap-2">
                                 <div class="flex items-center">

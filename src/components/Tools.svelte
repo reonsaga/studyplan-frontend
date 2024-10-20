@@ -506,7 +506,7 @@
                                     {#if selectedBoxIndex === null}
                                         <div
                                             class="card"
-                                            transition:slide={{ duration: 400 }}
+                                            transition:slide={{ duration: 200 }}
                                         >
                                             <h2 class="text-xl mb-2">
                                                 Select a Box to Add Cards or
@@ -558,6 +558,11 @@
                                             class="quiz-button"
                                             >Add Flashcard</button
                                         >
+                                        <button
+                                            on:click={resetLeitnerQuiz}
+                                            class="quiz-button"
+                                            >Back to Box Selection</button
+                                        >
                                         <p>
                                             Cards in this box: {getLeitnerCardCount(
                                                 boxes[selectedBoxIndex],
@@ -567,7 +572,7 @@
                                         {#if getLeitnerCardCount(boxes[selectedBoxIndex]) > 0}
                                             <button
                                                 transition:slide={{
-                                                    duration: 400,
+                                                    duration: 200,
                                                 }}
                                                 on:click={startLeitnerQuiz}
                                                 class="quiz-button"
@@ -635,7 +640,7 @@
                                                 {#if !answered}
                                                     <button
                                                         transition:slide={{
-                                                            duration: 400,
+                                                            duration: 200,
                                                         }}
                                                         on:click={() =>
                                                             moveLeitnerCard(
@@ -647,7 +652,7 @@
                                                     </button>
                                                     <button
                                                         transition:slide={{
-                                                            duration: 400,
+                                                            duration: 200,
                                                         }}
                                                         on:click={() =>
                                                             moveLeitnerCard(
@@ -662,7 +667,7 @@
                                                 {#if showNextCardButton}
                                                     <button
                                                         transition:slide={{
-                                                            duration: 400,
+                                                            duration: 200,
                                                         }}
                                                         on:click={nextLeitnerCard}
                                                         class="quiz-button"
@@ -677,18 +682,13 @@
                                 {#if quizCompleted}
                                     <div
                                         class="card results-container"
-                                        transition:slide={{ duration: 400 }}
+                                        transition:slide={{ duration: 200 }}
                                     >
                                         <h2 class="text-xl mb-2">Results</h2>
                                         <p>
                                             You completed the quiz with {score} correct
                                             answers!
                                         </p>
-                                        <button
-                                            on:click={resetLeitnerQuiz}
-                                            class="quiz-button"
-                                            >Back to Box Selection</button
-                                        >
                                     </div>
                                 {/if}
                             </div>

@@ -5,7 +5,7 @@
     import Tasks from "../../components/Tasks.svelte";
     import { goto } from "$app/navigation";
     let tasks;
-    const getAccessToken = async () => {
+    /*const getAccessToken = async () => {
         const url = "https://studyplan-api.onrender.com/api/v1/access";
         const data = await fetch(url, {
             method: "GET",
@@ -37,7 +37,7 @@
     onMount(async () => {
         await getAccessToken();
         await getTasks();
-    });
+    });*/
 </script>
 
 <SectionWrapper>

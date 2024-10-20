@@ -1,3 +1,36 @@
+<script>
+    function validateForm(event) {
+        event.preventDefault();
+        const title = document.getElementById("ftitle").value.trim();
+        const content = document.getElementById("editor").value.trim();
+        const category = document.getElementById("category").value;
+        const errorMessage = document.getElementById("error-message");
+
+        // Check if any fields are empty
+        if (!title || !content || !category) {
+            errorMessage.classList.remove("hidden");
+            errorMessage.classList.add("translate-y-0");
+            setTimeout(() => {
+                errorMessage.classList.add("-translate-y-10");
+            }, 3000);
+            return false; // Prevent form submission
+        }
+
+        // Handle form submission (e.g., AJAX request or further processing)
+        console.log({ title, content, category });
+        // Optionally, you can close the modal after submission
+        // closeModal(); // Uncomment if you want to close the modal
+
+        return true; // Allow form submission
+    }
+
+    function closeModal() {
+        document.getElementById("forumcreation-modal").classList.add("hidden");
+        document.getElementById("error-message").classList.add("hidden");
+        document.getElementById("forum-form").reset(); // Reset form fields
+    }
+</script>
+
 <!--Overall Parent Containers-->
 <div class="flex-1 flex justify-center items-center xl:ml-64">
     <div class="p-4">
@@ -7,133 +40,84 @@
                     <div
                         class="top-4 left-3 flex flex-col items-center space-y-4"
                     >
-                        <!--Card Container-->
                         <div
                             class="pt-4 px-4 pb-4 bg-white border xl:w-4/6 lg:w-5/6 md:w-5/6 w-full border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 space-y-4"
                         >
-                            <!--Searchbar Container-->
-                            <form class="max-w-lg mx-auto">
-                                <div class="flex">
-                                    <label
-                                        for="search-dropdown"
-                                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-                                        >Your Email</label
+                            <form class="flex items-center max-w-sm mx-auto">
+                                <label for="simple-search" class="sr-only"
+                                    >Search</label
+                                >
+                                <div class="relative w-full">
+                                    <div
+                                        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
                                     >
-                                    <button
-                                        id="dropdown-button"
-                                        data-dropdown-toggle="dropdown"
-                                        class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                                        type="button"
-                                        >All categories <svg
-                                            class="w-2.5 h-2.5 ms-2.5"
-                                            aria-hidden="true"
+                                        <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
-                                            viewBox="0 0 10 6"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="gray"
+                                            class="size-4"
                                         >
                                             <path
-                                                stroke="currentColor"
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="m1 1 4 4 4-4"
+                                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                                             />
-                                        </svg></button
-                                    >
-                                    <div
-                                        id="dropdown"
-                                        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                                    >
-                                        <ul
-                                            class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="dropdown-button"
-                                        >
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >School</button
-                                                >
-                                            </li>
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >Work</button
-                                                >
-                                            </li>
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >Games</button
-                                                >
-                                            </li>
-                                            <li>
-                                                <button
-                                                    type="button"
-                                                    class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    >Exercise</button
-                                                >
-                                            </li>
-                                        </ul>
+                                        </svg>
                                     </div>
-                                    <div class="relative w-full">
-                                        <input
-                                            type="search"
-                                            id="search-dropdown"
-                                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                            placeholder="Search forums..."
-                                            required
+                                    <input
+                                        type="text"
+                                        id="simple-search"
+                                        class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:ring-pink-500 focus:border-pink-500 block w-full ps-10 p-2.5"
+                                        placeholder="Search..."
+                                        required
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    class="p-2.5 ms-2 text-sm font-medium text-white rounded-lg bg-pink-500 hover:bg-pink-700"
+                                >
+                                    <svg
+                                        class="w-4 h-4"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                                         />
-                                        <button
-                                            type="submit"
-                                            class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-pink-500 rounded-e-lg border border-pink-500 hover:bg-pink-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    </svg>
+                                    <span class="sr-only">Search</span>
+                                </button>
+                                <div class="flex-shrink-0 ms-2">
+                                    <button
+                                        data-modal-target="forumcreation-modal"
+                                        data-modal-toggle="forumcreation-modal"
+                                        type="button"
+                                        class="text-pink-500 border border-pink-500 bg-white hover:bg-pink-500 hover:text-white font-bold w-10 h-10 rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="currentColor"
+                                            class="w-5 h-5"
                                         >
-                                            <svg
-                                                class="w-4 h-4"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 20 20"
-                                            >
-                                                <path
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                                />
-                                            </svg>
-                                            <span class="sr-only">Search</span>
-                                        </button>
-                                    </div>
-                                    <div class="flex mx-4">
-                                        <button
-                                            data-modal-target="forumcreation-modal"
-                                            data-modal-toggle="forumcreation-modal"
-                                            type="button"
-                                            class="text-pink-500 border border-pink-500 bg-white hover:bg-pink-500 hover:text-white hover font-bold rounded-full text-sm p-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="size-5"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M12 4.5v15m7.5-7.5h-15"
-                                                />
-                                            </svg>
-
-                                            <span class="sr-only">Add task</span
-                                            >
-                                        </button>
-                                    </div>
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M12 4.5v15m7.5-7.5h-15"
+                                            />
+                                        </svg>
+                                        <span class="sr-only">Add task</span>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -349,7 +333,7 @@
     </div>
 </div>
 
-<!--Forum Creation Pop-up-->
+<!-- Forum Creation Pop-up -->
 <div
     id="forumcreation-modal"
     tabindex="-1"
@@ -370,6 +354,7 @@
                     type="button"
                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="forumcreation-modal"
+                    onclick="closeModal()"
                 >
                     <svg
                         class="w-3 h-3"
@@ -392,137 +377,61 @@
 
             <!-- Modal body -->
             <div class="p-4 md:p-5">
-                <form class="space-y-4" action="#">
-                    <div></div>
+                <form
+                    id="forum-form"
+                    class="space-y-4"
+                    onsubmit="return validateForm(event)"
+                >
                     <label
-                        aria-label="disabled input 2"
-                        for="taskdetails"
+                        for="ftitle"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Post Title</label
                     >
                     <input
                         type="text"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                        name="ftitle"
                         id="ftitle"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        required
                     />
+
                     <label
-                        for="postform"
+                        for="editor"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >Post Content</label
                     >
-                    <form>
+                    <div
+                        class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50"
+                    >
                         <div
-                            class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50"
+                            class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800"
                         >
-                            <div
-                                class="flex items-center justify-between px-3 py-2 border-b"
+                            <label for="editor" class="sr-only"
+                                >Publish post</label
                             >
-                                <div
-                                    class="flex flex-wrap items-center divide-gray-200 sm:divide-x sm:rtl:divide-x-reverse"
-                                >
-                                    <div
-                                        class="flex items-center space-x-1 rtl:space-x-reverse sm:pe-4"
-                                    >
-                                        <button
-                                            type="button"
-                                            class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100"
-                                        >
-                                            <svg
-                                                class="w-4 h-4"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 12 20"
-                                            >
-                                                <path
-                                                    stroke="currentColor"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"
-                                                />
-                                            </svg>
-                                            <span class="sr-only"
-                                                >Attach file</span
-                                            >
-                                        </button>
-
-                                        <button
-                                            type="button"
-                                            class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-                                        >
-                                            <svg
-                                                class="w-4 h-4"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                viewBox="0 0 16 20"
-                                            >
-                                                <path
-                                                    d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z"
-                                                />
-                                                <path
-                                                    d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z"
-                                                />
-                                            </svg>
-                                            <span class="sr-only"
-                                                >Upload image</span
-                                            >
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
-                                        >
-                                            <svg
-                                                class="w-4 h-4"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                viewBox="0 0 16 20"
-                                            >
-                                                <path
-                                                    d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"
-                                                />
-                                                <path
-                                                    d="M14.067 0H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.933-2ZM6.709 13.809a1 1 0 1 1-1.418 1.409l-2-2.013a1 1 0 0 1 0-1.412l2-2a1 1 0 0 1 1.414 1.414L5.412 12.5l1.297 1.309Zm6-.6-2 2.013a1 1 0 1 1-1.418-1.409l1.3-1.307-1.295-1.295a1 1 0 0 1 1.414-1.414l2 2a1 1 0 0 1-.001 1.408v.004Z"
-                                                />
-                                            </svg>
-                                            <span class="sr-only"
-                                                >Format code</span
-                                            >
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800"
-                            >
-                                <label for="editor" class="sr-only"
-                                    >Publish post</label
-                                >
-                                <textarea
-                                    id="editor"
-                                    rows="8"
-                                    class="block w-full px-0 text-sm text-gray-800 bg-white border-0 focus:ring-0"
-                                    required
-                                ></textarea>
-                            </div>
+                            <textarea
+                                id="editor"
+                                rows="8"
+                                class="block w-full px-0 text-sm text-gray-800 bg-white border-0 focus:ring-0"
+                                required
+                            ></textarea>
                         </div>
-                    </form>
+                    </div>
 
                     <div class="grid grid-cols-1">
                         <div class="col-span-2 sm:col-span-1">
                             <label
                                 for="category"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >Category</label
                             >
-                                Category
-                            </label>
                             <select
                                 id="category"
-                                placeholder="Select category..."
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-pink-500 focus:border-pink-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                required
                             >
+                                <option value="" disabled selected
+                                    >Select category...</option
+                                >
                                 <option value="School">School</option>
                                 <option value="Work">Work</option>
                                 <option value="Games">Games</option>
@@ -533,10 +442,18 @@
 
                     <button
                         type="submit"
-                        class="w-full text-white border border-pink-500 bg-pink-500 hover:bg-white hover:text-pink-500 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        class="w-full text-white border border-pink-500 bg-pink-500 hover:bg-white hover:text-pink-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Post
                     </button>
+
+                    <!-- Error message -->
+                    <div
+                        id="error-message"
+                        class="hidden mt-4 p-2 text-sm text-red-600 bg-red-100 rounded-lg transition-transform transform -translate-y-10"
+                    >
+                        Please fill out all fields correctly.
+                    </div>
                 </form>
             </div>
         </div>

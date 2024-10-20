@@ -171,7 +171,7 @@
                             <div class="flex flex-col items-center">
                                 <img
                                     class="forum-image mx-4 mb-4 rounded-lg"
-                                    src="/static/images/sample-forum.jpg"
+                                    src="/src/lib/images/sample-forum.jpg"
                                     alt="image description"
                                 />
 
@@ -267,7 +267,7 @@
                                         </div>
                                         <button
                                             type="submit"
-                                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-pink-500 hover:bg-pink-700 rounded-lg focus:ring-4 focus:ring-pink-500"
+                                            class="inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-pink-500 hover:bg-pink-700 rounded-lg focus:ring-4 focus:ring-pink-500"
                                         >
                                             Post comment
                                         </button>
@@ -530,7 +530,7 @@
                                                     class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold"
                                                 >
                                                     <img
-                                                        class="mr-2 w-6 h-6 rounded-full"
+                                                        class="mx-2 w-6 h-6 rounded-full"
                                                         src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
                                                         alt="Bonnie Green"
                                                     />Bonnie G.

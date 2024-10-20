@@ -1,7 +1,28 @@
 <script>
+    import { slide } from "svelte/transition"; // Import fade transition
+
     export let handleLogin;
-    let email;
-    let password;
+    let email = "";
+    let password = "";
+    let errorMessage = ""; // Store error message here
+    let showError = false; // Control when to show the alert
+
+    function onLogin() {
+        // Example validation for email and password
+        if (!email || !password) {
+            showError = true;
+            errorMessage = "Please fill in both email and password.";
+        } else {
+            // Proceed with login logic
+            try {
+                handleLogin(email, password);
+                showError = false; // Hide error if login is successful
+            } catch (error) {
+                showError = true;
+                errorMessage = "Login failed. Please try again."; // Customize the error message
+            }
+        }
+    }
 </script>
 
 <body>
@@ -18,6 +39,7 @@
                 >
                     StudyPlan
                 </h1>
+
                 <div class="py-4">
                     <label
                         for="email"
@@ -49,46 +71,73 @@
                         required
                     />
                 </div>
-                <div class="flex justify-between w-full py-4">
-                    <!-- <div class="flex items-center">
-                        <div class="flex items-center">
-                            <input
-                                id="remember"
-                                type="checkbox"
-                                value=""
-                                class="w-4 h-4 border border-gray-300 accent-pink-500 rounded bg-gray-50 focus:ring-3 focus:ring-pink-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                            />
-                            <label
-                                for="remember"
-                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 whitespace-nowrap"
-                                >Remember me</label
-                            >
-                        </div>
-                    </div> -->
-                    <!-- <a
-                        href="#"
-                        class="ms-auto text-sm text-pink-500 hover:underline dark:text-blue-500"
-                        >Lost Password?</a
-                    > -->
-                </div>
-                <!--Login Button-->
+
+                <!-- Login Button -->
                 <button
-                    type="submit"
-                    on:click={handleLogin(email, password)}
+                    type="button"
+                    on:click={onLogin}
                     class="w-full text-white bg-pink-500 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >Login</button
                 >
+
                 <div class="mt-2 text-center text-gray-400">
-                    Dont'have an account yet?
-                    <!--Registration Link-->
+                    Don't have an account yet?
+                    <!-- Registration Link -->
                     <a
                         href="/register"
                         class="text-pink-500 hover:underline dark:text-blue-500"
                         >Sign up for free</a
                     >
                 </div>
+
+                <!-- Error Alert (with Svelte fade transition) -->
+                {#if showError}
+                    <div
+                        id="alert-2"
+                        class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50 w-[300px] mx-auto"
+                        role="alert"
+                        transition:slide={{ duration: 200 }}
+                    >
+                        <svg
+                            class="flex-shrink-0 w-4 h-4"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                            />
+                        </svg>
+                        <div class="ms-3 text-xs font-medium">
+                            {errorMessage}
+                        </div>
+                        <button
+                            type="button"
+                            class="ms-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex items-center justify-center h-8 w-8"
+                            on:click={() => (showError = false)}
+                        >
+                            <svg
+                                class="w-3 h-3"
+                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 14 14"
+                            >
+                                <path
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                {/if}
             </div>
-            <!--Image on the side-->
+
+            <!-- Image on the side -->
             <div class="relative">
                 <img
                     src="/src/lib/images/bg-login.png"
