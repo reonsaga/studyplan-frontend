@@ -4,7 +4,7 @@
     import { onMount } from "svelte";
     import { goto } from "$app/navigation";
     import ForumPage from "../../components/ForumPage.svelte";
-    /*onMount(async () => {
+    onMount(async () => {
         const url = "https://studyplan-api.onrender.com/api/v1/access";
         const data = await fetch(url, {
             method: "GET",
@@ -19,7 +19,7 @@
         } else {
             goto("./");
         }
-    });*/
+    });
 </script>
 
 <SectionWrapper>

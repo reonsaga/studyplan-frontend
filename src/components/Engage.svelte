@@ -1,12 +1,46 @@
 <!--Script for gif play on click-->
 <script>
     import { Tooltip, Button } from "flowbite-svelte";
-    let isPlaying = false;
-    const pausedSrc = "/src/lib/images/bag-static.png";
-    const animatedSrc = "/src/lib/images/bag-open.gif";
 
+    let isPlaying = false; // Track if the first GIF is playing
+    let isPlayingTenBook = false; // Track if the tenbook GIF is playing
+    const pausedSrc = "/src/lib/images/game/book-start.png"; // Initial image
+    const animatedSrc = "/src/lib/images/game/book-open.gif"; // GIF
+    const pausedSrcTenBook = "/src/lib/images/game/tenbook-start.png"; // Initial image for tenbook
+    const animatedSrcTenBook = "/src/lib/images/game/tenbook-open.gif"; // GIF for tenbook
+
+    // Function to play the first GIF
     function playGif() {
-        isPlaying = true;
+        isPlaying = true; // Start playing the GIF
+        // Your code to display the GIF goes here
+    }
+
+    // Function to reset the first GIF state
+    function resetGif() {
+        isPlaying = false; // Stop playing
+        // Your code to display the paused image goes here
+    }
+
+    // Function to handle modal close for the first GIF
+    function closeModal() {
+        resetGif(); // Reset GIF state when modal is closed
+    }
+
+    // Function to play the tenbook GIF
+    function playTenBookGif() {
+        isPlayingTenBook = true; // Start playing the tenbook GIF
+        // Your code to display the tenbook GIF goes here
+    }
+
+    // Function to reset the tenbook GIF state
+    function resetTenBookGif() {
+        isPlayingTenBook = false; // Stop playing the tenbook GIF
+        // Your code to display the paused tenbook image goes here
+    }
+
+    // Function to handle modal close for tenbook
+    function closeTenBookModal() {
+        resetTenBookGif(); // Reset tenbook GIF state when modal is closed
     }
 </script>
 
@@ -137,7 +171,7 @@
                             <div class="flex flex-col items-center">
                                 <img
                                     class="mx-4 mb-4 rounded-lg w-96 h-48"
-                                    src="/src/lib/images/sample-forum.jpg"
+                                    src="/src/lib/images/game/bg-pull.png"
                                 />
 
                                 <div class="flex flex-row items-center">
@@ -205,8 +239,8 @@
 
                                     <div class="flex flex-col items-center">
                                         <button
-                                            data-modal-target="pull-modal"
-                                            data-modal-toggle="pull-modal"
+                                            data-modal-target="tenpull-modal"
+                                            data-modal-toggle="tenpull-modal"
                                             type="submit"
                                             class="w-full text-white border border-pink-500 bg-pink-500 hover:bg-white hover:text-pink-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         >
@@ -442,8 +476,9 @@
     </div>
 </div>
 
-<!--Pull Pop-up-->
+<!-- Pull Pop-up -->
 <div
+    data-modal-backdrop="static"
     id="pull-modal"
     tabindex="-1"
     aria-hidden="true"
@@ -454,24 +489,115 @@
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
             <div
-                class="flex flex-col items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
             >
                 <h3
                     class="text-2xl font-semibold text-gray-900 dark:text-white"
                 >
-                    Open the bag!
+                    Open the book!
                 </h3>
+                <button
+                    type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="pull-modal"
+                    on:click={closeModal}
+                >
+                    <svg
+                        class="w-3 h-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 14"
+                    >
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                        />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <div class="flex flex-col items-center">
+                <!-- Clickable image to trigger animation -->
+                <img
+                    class="mx-4 rounded-lg cursor-pointer"
+                    src={isPlaying ? animatedSrc : pausedSrc}
+                    alt="image description"
+                    on:click={playGif}
+                />
 
-                <hr class="bg-gray-500" />
-                <div class="flex flex-col items-center">
-                    <!-- Clickable image to trigger animation -->
-                    <img
-                        class="mx-4 mb-4 rounded-lg cursor-pointer"
-                        src={isPlaying ? animatedSrc : pausedSrc}
-                        alt="image description"
-                        on:click={playGif}
-                    />
-                </div>
+                <!-- Button to reset the GIF -->
+                <Button
+                    on:click={resetGif}
+                    class="quiz-button hover:bg-pink-700 mb-2">Reset</Button
+                >
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 10 Pull Pop-up -->
+<div
+    data-modal-backdrop="static"
+    id="tenpull-modal"
+    tabindex="-1"
+    aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 z-50 flex justify-center items-center"
+>
+    <div class="relative w-full max-w-md md:max-w-lg lg:max-w-xl p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+            >
+                <h3
+                    class="text-2xl font-semibold text-gray-900 dark:text-white"
+                >
+                    Open the Tenbook!
+                </h3>
+                <button
+                    type="button"
+                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="tenpull-modal"
+                    on:click={closeTenBookModal}
+                >
+                    <svg
+                        class="w-3 h-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 14 14"
+                    >
+                        <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                        />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <div class="flex flex-col items-center">
+                <!-- Clickable image to trigger animation -->
+                <img
+                    class="mx-4 rounded-lg cursor-pointer"
+                    src={isPlayingTenBook
+                        ? animatedSrcTenBook
+                        : pausedSrcTenBook}
+                    alt="image description"
+                    on:click={playTenBookGif}
+                />
+                <!-- Button to reset the GIF -->
+                <Button
+                    on:click={resetTenBookGif}
+                    class="quiz-button hover:bg-pink-700 mb-2">Reset</Button
+                >
             </div>
         </div>
     </div>
